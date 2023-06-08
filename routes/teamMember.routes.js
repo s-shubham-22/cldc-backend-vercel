@@ -11,7 +11,7 @@ const {
 } = require('../controllers');
 
 router.get('/', getTeamMembers);
-router.get('/:id', getTeamMember);
+router.get('/:member_id', getTeamMember);
 // router.post('/', createTeamMember);
 // router.put('/:id', updateTeamMember);
 // router.delete('/', deleteTeamMembers);
