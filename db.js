@@ -1,17 +1,21 @@
 require('dotenv').config({ path: './.env' });
 const { Sequelize, DataTypes } = require('sequelize');
 const {
-  NAME, USER, PASSWORD, HOST, DIALECT, POOl,
+  POSTGRES_URI, HOST, DIALECT, POOl,
 } = require('./config/db.config');
 
 const sequelize = new Sequelize(
-  NAME,
-  USER,
-  PASSWORD,
+  POSTGRES_URI,
   {
     host: HOST,
     dialect: DIALECT,
     logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
 
     pool: POOl,
   },
