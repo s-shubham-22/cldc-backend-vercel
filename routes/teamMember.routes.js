@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const {
-    teamMemberController: {
-        getTeamMembers,
-        getTeamMember,
-        // createTeamMember,
-        // updateTeamMember,
-        // deleteTeamMember,
-        // deleteTeamMembers,
-    },
+  teamMemberController: {
+    getTeamMembers,
+    getTeamMember,
+    // createTeamMember,
+    // updateTeamMember,
+    // deleteTeamMember,
+    // deleteTeamMembers,
+  },
 } = require('../controllers');
 
 router.get('/', getTeamMembers);

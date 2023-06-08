@@ -1,25 +1,25 @@
 const { TeamMember } = require('../models');
 
 exports.getTeamMembers = async (req, res) => {
-    try {
-        const teamMembers = await TeamMember.findAll();
-        res.status(201).json(teamMembers);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  try {
+    const teamMembers = await TeamMember.findAll();
+    res.status(201).json(teamMembers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 exports.getTeamMember = async (req, res) => {
-    try {
-        const teamMember = await TeamMember.findOne({
-            where: {
-                member_id: req.params.member_id,
-            },
-        });
-        res.status(201).json(teamMember);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  try {
+    const teamMember = await TeamMember.findOne({
+      where: {
+        member_id: req.params.member_id,
+      },
+    });
+    res.status(201).json(teamMember);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 // exports.createTeamMember = async (req, res) => {

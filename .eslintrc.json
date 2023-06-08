@@ -21,7 +21,7 @@
         ],
         "indent": [
             "error",
-            4
+            2
         ],
         "no-console": "off",
         "max-len": [
