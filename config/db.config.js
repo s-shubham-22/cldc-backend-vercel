@@ -10,7 +10,7 @@ module.exports = {
   // DIALECT: 'postgres',
 
   // Postgres using uri
-  POSTGRES_URI: process.env.POSTGRES_URI,
+  POSTGRES_URL: process.env.POSTGRES_URL,
 
   // Pool-Settings
 

@@ -1,14 +1,11 @@
 require('dotenv').config({ path: './.env' });
 const { Sequelize, DataTypes } = require('sequelize');
 const {
-  // POSTGRES_URI,
-  HOST, DIALECT, POOl,
+  POSTGRES_URL, HOST, DIALECT, POOl,
 } = require('./config/db.config');
 
 const sequelize = new Sequelize(
-  // POSTGRES_URI,
-  // eslint-disable-next-line max-len
-  'postgres://default:eSo1QXrVN0nc@ep-summer-firefly-398025.us-east-1.postgres.vercel-storage.com:5432/verceldb',
+  POSTGRES_URL,
   {
     host: HOST,
     dialect: DIALECT,
