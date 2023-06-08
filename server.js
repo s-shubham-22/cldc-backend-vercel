@@ -10,6 +10,10 @@ app.use(express.json({ limit: '30mb', extended: true }));
 app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('Hello to the API!');
+});
+
 app.use('/team-members', require('./routes').TeamMemberRouter);
 app.use('/contacts', require('./routes').ContactRouter);
 
