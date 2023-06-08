@@ -5,7 +5,9 @@ const {
 } = require('./config/db.config');
 
 const sequelize = new Sequelize(
-  POSTGRES_URI,
+  // POSTGRES_URI,
+  // eslint-disable-next-line max-len
+  'postgres://default:eSo1QXrVN0nc@ep-summer-firefly-398025.us-east-1.postgres.vercel-storage.com:5432/verceldb',
   {
     host: HOST,
     dialect: DIALECT,
