@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { connectDB, sequelize } = require('./db');
+const seed = require('./seeders/seed');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,6 +29,7 @@ app.listen(PORT, async () => {
     sequelize.sync({ force: false })
       .then(() => console.log('✅ Database & tables synced!'))
       .catch((error) => console.error('❌ Unable to sync database: ', error));
+    await seed();
   } catch (error) {
     console.error('❌ Unable to connect to the database: ', error);
   }
