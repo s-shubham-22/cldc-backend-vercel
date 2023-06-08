@@ -23,8 +23,12 @@ app.all('*', (req, res) => {
 
 app.listen(PORT, async () => {
   console.log(`🚀 Server running on port: ${PORT}`);
-  await connectDB();
-  sequelize.sync({ force: false })
-    .then(() => console.log('✅ Database & tables synced!'))
-    .catch((error) => console.error('❌ Unable to sync database: ', error));
+  try {
+    await connectDB();
+    sequelize.sync({ force: false })
+      .then(() => console.log('✅ Database & tables synced!'))
+      .catch((error) => console.error('❌ Unable to sync database: ', error));
+  } catch (error) {
+    console.error('❌ Unable to connect to the database: ', error);
+  }
 });

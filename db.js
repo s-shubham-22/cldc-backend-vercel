@@ -1,7 +1,8 @@
 require('dotenv').config({ path: './.env' });
 const { Sequelize, DataTypes } = require('sequelize');
 const {
-  POSTGRES_URI, HOST, DIALECT, POOl,
+  // POSTGRES_URI,
+  HOST, DIALECT, POOl,
 } = require('./config/db.config');
 
 const sequelize = new Sequelize(
