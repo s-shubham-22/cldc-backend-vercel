@@ -46,10 +46,12 @@ const seedTeamMembers = async () => {
               format: 'png',
               transformation: [
                 {
-                  width: 1000,
-                  height: 1000,
+                  width: 500,
+                  height: 500,
                   crop: 'fill',
                   gravity: 'face',
+                  quality: 'auto',
+                  fetch_format: 'auto',
                 },
               ],
             },
