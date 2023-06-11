@@ -12,7 +12,7 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send(`Hello to the API! : ${process.env.DATABASE_URL}`);
+  res.send('Hello to the API!');
 });
 
 app.use('/team-members', require('./routes').TeamMemberRouter);
