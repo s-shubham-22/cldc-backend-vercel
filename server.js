@@ -27,9 +27,11 @@ app.listen(PORT, async () => {
   try {
     await connectDB();
     sequelize.sync({ force: false })
-      .then(() => console.log('✅ Database & tables synced!'))
+      .then(async () => {
+        console.log('✅ Database & tables synced!');
+        await seed();
+      })
       .catch((error) => console.error('❌ Unable to sync database: ', error));
-    await seed();
   } catch (error) {
     console.error('❌ Unable to connect to the database: ', error);
   }
