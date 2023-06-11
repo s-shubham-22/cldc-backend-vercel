@@ -1,15 +1,23 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "./server.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/server.js"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "./server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "./seeders/seed.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ],
+  "hooks": {
+    "poststart": "node seeder.js",
+    "post-deploy": "sleep 10 && curl -X POST https://cldc-backend-vercel.vercel.app/seeder"
+  }
 }
