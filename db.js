@@ -2,11 +2,11 @@ require('dotenv').config({ path: './.env' });
 const { Sequelize, DataTypes } = require('sequelize');
 const pg = require('pg');
 const {
-  POSTGRES_URL, HOST, DIALECT, POOl,
+  DATABASE_URL, HOST, DIALECT, POOl,
 } = require('./config/db.config');
 
 const sequelize = new Sequelize(
-  POSTGRES_URL,
+  DATABASE_URL,
   {
     host: HOST,
     dialect: DIALECT,
