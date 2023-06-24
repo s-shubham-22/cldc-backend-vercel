@@ -15,7 +15,9 @@ cloudinary.config(cloudinaryConfig);
 const seedTeamMembers = async () => {
   try {
     console.log('🌱 Seeding team members...');
-    const folderName = 'team-members';
+    const folder = process.env.CLOUDINARY_FOLDER;
+    const subfolder = 'team-members';
+    const folderName = `${folder}/${subfolder}`;
     // eslint-disable-next-line max-len
     await cloudinary.api.delete_resources_by_prefix(folderName, (error, result) => {
       if (error) {

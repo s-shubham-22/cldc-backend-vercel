@@ -2,9 +2,9 @@ const { sequelize, DataTypes } = require('../db');
 
 const TeamMember = sequelize.define('team_member', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
-    autoIncrement: true,
   },
   member_id: {
     type: DataTypes.STRING,

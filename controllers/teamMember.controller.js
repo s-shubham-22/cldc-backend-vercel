@@ -5,7 +5,8 @@ exports.getTeamMembers = async (req, res) => {
     const teamMembers = await TeamMember.findAll();
     res.status(201).json(teamMembers);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500);
+    throw new Error(err);
   }
 };
 
@@ -16,9 +17,16 @@ exports.getTeamMember = async (req, res) => {
         member_id: req.params.member_id,
       },
     });
+
+    if (!teamMember) {
+      res.status(404);
+      throw new Error('Team Member not found');
+    }
+
     res.status(201).json(teamMember);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500);
+    throw new Error(err);
   }
 };
 

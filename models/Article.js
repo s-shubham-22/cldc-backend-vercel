@@ -2,9 +2,9 @@ const { sequelize, DataTypes } = require('../db');
 
 const Article = sequelize.define('article', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
-    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
@@ -23,6 +23,15 @@ const Article = sequelize.define('article', {
     type: DataTypes.DATE,
     allowNull: false,
     defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+  banner: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  tags: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true,
+    defaultValue: [],
   },
 }, {
   timestamps: true,
