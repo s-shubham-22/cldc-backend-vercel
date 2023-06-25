@@ -1,4 +1,5 @@
 const cloudinary = require('cloudinary').v2;
+const asyncHandler = require('express-async-handler');
 const { cloudinaryConfig } = require('../config/cloudinary.config');
 const { Article } = require('../models');
 
@@ -8,7 +9,7 @@ const folder = process.env.CLOUDINARY_FOLDER;
 const subfolder = 'articles';
 const path = `${folder}/${subfolder}`;
 
-exports.createArticle = async (req, res) => {
+exports.createArticle = asyncHandler(async (req, res) => {
   try {
     const banner = req.files.banner[0].path;
     const newArticle = await Article.create({
@@ -20,9 +21,9 @@ exports.createArticle = async (req, res) => {
     res.status(500);
     throw new Error(error);
   }
-};
+});
 
-exports.getArticles = async (req, res) => {
+exports.getArticles = asyncHandler(async (req, res) => {
   try {
     const articles = await Article.findAll();
     res.status(201).json(articles);
@@ -30,9 +31,9 @@ exports.getArticles = async (req, res) => {
     res.status(500);
     throw new Error(error);
   }
-};
+});
 
-exports.getArticle = async (req, res) => {
+exports.getArticle = asyncHandler(async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
 
@@ -46,9 +47,9 @@ exports.getArticle = async (req, res) => {
     res.status(500);
     throw new Error(error);
   }
-};
+});
 
-exports.updateArticle = async (req, res) => {
+exports.updateArticle = asyncHandler(async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
 
@@ -91,9 +92,9 @@ exports.updateArticle = async (req, res) => {
     res.status(500);
     throw new Error(error);
   }
-};
+});
 
-exports.deleteArticle = async (req, res) => {
+exports.deleteArticle = asyncHandler(async (req, res) => {
   try {
     const article = await Article.findByPk(req.params.id);
 
@@ -123,4 +124,4 @@ exports.deleteArticle = async (req, res) => {
     res.status(500);
     throw new Error(error);
   }
-};
+});

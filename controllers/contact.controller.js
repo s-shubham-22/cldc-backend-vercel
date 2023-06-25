@@ -1,6 +1,7 @@
+const asyncHandler = require('express-async-handler');
 const { Contact } = require('../models');
 
-exports.getContacts = async (req, res) => {
+exports.getContacts = asyncHandler(async (req, res) => {
   try {
     const contacts = await Contact.findAll();
     res.status(201).json(contacts);
@@ -8,9 +9,9 @@ exports.getContacts = async (req, res) => {
     res.status(500);
     throw new Error(err);
   }
-};
+});
 
-exports.getContact = async (req, res) => {
+exports.getContact = asyncHandler(async (req, res) => {
   try {
     const contact = await Contact.findByPk(req.params.id);
 
@@ -24,9 +25,9 @@ exports.getContact = async (req, res) => {
     res.status(500);
     throw new Error(err);
   }
-};
+});
 
-exports.createContact = async (req, res) => {
+exports.createContact = asyncHandler(async (req, res) => {
   try {
     const contact = await Contact.create(req.body);
     res.status(201).json(contact);
@@ -34,9 +35,9 @@ exports.createContact = async (req, res) => {
     res.status(500);
     throw new Error(err);
   }
-};
+});
 
-exports.updateContact = async (req, res) => {
+exports.updateContact = asyncHandler(async (req, res) => {
   try {
     const contact = await Contact.findByPk(req.params.id);
 
@@ -51,9 +52,9 @@ exports.updateContact = async (req, res) => {
     res.status(500);
     throw new Error(err);
   }
-};
+});
 
-exports.deleteContact = async (req, res) => {
+exports.deleteContact = asyncHandler(async (req, res) => {
   try {
     const contact = await Contact.findByPk(req.params.id);
 
@@ -68,9 +69,9 @@ exports.deleteContact = async (req, res) => {
     res.status(500);
     throw new Error(err);
   }
-};
+});
 
-exports.deleteContacts = async (req, res) => {
+exports.deleteContacts = asyncHandler(async (req, res) => {
   try {
     const contacts = await Contact.destroy({ where: {} });
     res.status(201).json(contacts);
@@ -78,4 +79,4 @@ exports.deleteContacts = async (req, res) => {
     res.status(500);
     throw new Error(err);
   }
-};
+});
