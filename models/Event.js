@@ -1,10 +1,11 @@
 const { sequelize, DataTypes } = require('../db');
+const { MODE } = require('../utils/constant');
 
 const Event = sequelize.define('event', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
-    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
@@ -15,16 +16,21 @@ const Event = sequelize.define('event', {
     type: DataTypes.STRING,
   },
   event_date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   },
   event_time: {
-    type: DataTypes.STRING,
+    type: DataTypes.TIME,
     allowNull: false,
   },
   event_venue: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  event_mode: {
+    type: DataTypes.ENUM(MODE.ONLINE, MODE.OFFLINE),
+    allowNull: false,
+    defaultValue: MODE.ONLINE,
   },
   registration_deadline: {
     type: DataTypes.DATE,
@@ -34,7 +40,7 @@ const Event = sequelize.define('event', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  event_image: {
+  banner: {
     type: DataTypes.STRING,
     allowNull: false,
   },

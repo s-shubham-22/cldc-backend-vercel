@@ -51,6 +51,7 @@ app.get('/', (req, res) => {
 app.use('/team-members', require('./routes').TeamMemberRouter);
 app.use('/contacts', require('./routes').ContactRouter);
 app.use('/articles', require('./routes').ArticleRouter);
+app.use('/events', require('./routes').EventRouter);
 
 app.use(notFound);
 app.use(errorHandler);
@@ -62,7 +63,7 @@ app.listen(PORT, async () => {
     sequelize.sync({ force: false })
       .then(async () => {
         console.log('✅ Database & tables synced!');
-        await seed();
+        // await seed();
       })
       .catch((error) => console.error('❌ Unable to sync database: ', error));
   } catch (error) {

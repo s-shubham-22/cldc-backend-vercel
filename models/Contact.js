@@ -7,11 +7,11 @@ const Contact = sequelize.define('contact', {
     primaryKey: true,
   },
   name: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   email: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   message: {
