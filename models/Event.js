@@ -13,7 +13,7 @@ const Event = sequelize.define('event', {
     unique: true,
   },
   description: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   event_date: {
     type: DataTypes.DATEONLY,

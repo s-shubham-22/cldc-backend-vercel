@@ -36,14 +36,6 @@
     ],
     "global-require": "off",
     "camelcase": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true,
-        "optionalDependencies": false,
-        "peerDependencies": false,
-        "bundledDependencies": false
-      }
-    ]
+    "import/no-extraneous-dependencies": "off",
   }
 }

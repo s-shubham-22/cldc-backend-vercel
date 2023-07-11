@@ -9,11 +9,18 @@ const {
     // deleteTeamMembers,
   },
 } = require('../controllers');
+// const {
+//   teamMemberValidator: {
+//     validateCreateTeamMember,
+//     validateUpdateTeamMember,
+//   },
+//   validate,
+// } = require('../validators');
 
 router.get('/', getTeamMembers);
 router.get('/:member_id', getTeamMember);
-// router.post('/', createTeamMember);
-// router.put('/:id', updateTeamMember);
+// router.post('/', validateCreateTeamMember, validate, createTeamMember);
+// router.put('/:id', validateUpdateTeamMember, validate, updateTeamMember);
 // router.delete('/', deleteTeamMembers);
 // router.delete('/:id', deleteTeamMember);
 

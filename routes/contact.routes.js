@@ -9,12 +9,18 @@ const {
     // deleteContacts,
   },
 } = require('../controllers');
+const {
+  contactValidator: {
+    validateCreateContact,
+  },
+  validate,
+} = require('../validators');
 
 const router = express.Router();
 
 router.get('/', getContacts);
 router.get('/:id', getContact);
-router.post('/', createContact);
+router.post('/', validateCreateContact, validate, createContact);
 // router.put('/:id', updateContact);
 // router.delete('/', deleteContacts);
 // router.delete('/:id', deleteContact);
