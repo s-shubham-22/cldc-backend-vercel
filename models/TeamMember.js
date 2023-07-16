@@ -25,7 +25,7 @@ const TeamMember = sequelize.define('team_member', {
     unique: true,
     validate: {
       // eslint-disable-next-line max-len
-      is: /^https?:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|pub|company)\/[a-zA-Z0-9-_]+\/?$/i,
+      is: /^https?:\/\/([a-z]{2,3}\.)?github\.com\[a-zA-Z0-9-_]+\/?$/i,
     },
   },
   email: {

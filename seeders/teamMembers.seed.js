@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+//require('dotenv').config({ path: '../.env' });
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
@@ -15,7 +15,7 @@ cloudinary.config(cloudinaryConfig);
 const seedTeamMembers = async () => {
   try {
     console.log('🌱 Seeding team members...');
-    const folder = process.env.CLOUDINARY_FOLDER;
+    const folder = 'Articles';
     const subfolder = 'team-members';
     const folderName = `${folder}/${subfolder}`;
     // eslint-disable-next-line max-len

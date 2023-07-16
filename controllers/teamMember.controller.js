@@ -30,30 +30,30 @@ exports.getTeamMember = async (req, res) => {
   }
 };
 
-// exports.createTeamMember = async (req, res) => {
-//     try {
-//         const existingMember = await TeamMember.findOne({
-//             where: {
-//                 $or: [
-//                     { member_id: req.body.member_id },
-//                     { email: req.body.email },
-//                     { linkedin: req.body.linkedin },
-//                 ],
-//             },
-//         });
-//         if (existingMember) {
-//             return res.status(400).json({ error: 'Member already exists' });
-//         }
-//         const name = req.body.name.toLowerCase().replace(/\s/g, '_');
-// eslint-disable-next-line max-len
-//         const designation = req.body.designation.toLowerCase().replace(/\s/g, '_');
-//         req.body.image = `${name}_${designation}.jpg`;
-//         const teamMember = await TeamMember.create(req.body);
-//         return res.status(201).json(teamMember);
-//     } catch (err) {
-//         return res.status(500).json({ error: err.message });
-//     }
-// };
+exports.createTeamMember = async (req, res) => {
+    try {
+        const existingMember = await TeamMember.findOne({
+            where: {
+                $or: [
+                    { member_id: req.body.member_id },
+                    { email: req.body.email },
+                    { linkedin: req.body.linkedin },
+                ],
+            },
+        });
+        if (existingMember) {
+            return res.status(400).json({ error: 'Member already exists' });
+        }
+        const name = req.body.name.toLowerCase().replace(/\s/g, '_');
+//eslint-disable-next-line max-len
+        const designation = req.body.designation.toLowerCase().replace(/\s/g, '_');
+        req.body.image = `${name}_${designation}.jpg`;
+        const teamMember = await TeamMember.create(req.body);
+        return res.status(201).json(teamMember);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+};
 
 // exports.updateTeamMember = async (req, res) => {
 //     try {

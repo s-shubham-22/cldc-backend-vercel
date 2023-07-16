@@ -4,21 +4,22 @@ const { Article } = require('../models');
 
 cloudinary.config(cloudinaryConfig);
 
-const folder = process.env.CLOUDINARY_FOLDER;
-const subfolder = 'articles';
+const folder = 'Articles';
+const subfolder = 'article1';
 const path = `${folder}/${subfolder}`;
 
 exports.createArticle = async (req, res) => {
   try {
     const banner = req.files.banner[0].path;
+    //console.log(banner)
     const newArticle = await Article.create({
       ...req.body,
       banner,
     });
     res.status(201).json(newArticle);
   } catch (error) {
-    res.status(500);
-    throw new Error(error);
+    res.status(500).send("Error occured!!") ;
+    //throw new Error(error);
   }
 };
 

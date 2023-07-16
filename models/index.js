@@ -3,4 +3,5 @@ module.exports = {
   Event: require('./Event'),
   Article: require('./Article'),
   Contact: require('./Contact'),
+  Career: require('./Career')
 };
