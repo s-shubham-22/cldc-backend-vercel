@@ -1,7 +1,7 @@
 //require('dotenv').config({ path: '../.env' });
 
 module.exports = {
-  cloud_name: 'dwwbsjyhm',
-  api_key: '397964933828264',
-  api_secret: 'GMpBAan9bC4Il-2yzhfRIu_1hoQ',
+  cloud_name: CLOUDINARY_CLOUD_NAME,
+  api_key: CLOUDINARY_API_KEY,
+  api_secret:CLOUDINARY_API_SECRET ,
 };
