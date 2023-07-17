@@ -70,7 +70,7 @@ app.listen(PORT, async () => {
   console.log(`🚀 Server running on port: ${PORT}`);
   try {
     await connectDB();
-    sequelize.sync({ force: false })
+    sequelize.sync({ alter: true })
       .then(async () => {
         console.log('✅ Database & tables synced!');
         // await seed();
