@@ -17,5 +17,6 @@ module.exports = {
   contactValidator: require('./contact.validator'),
   eventValidator: require('./event.validator'),
   teamMemberValidator: require('./teamMember.validator'),
+  careerValidator: require('./career.validator'),
   validate,
 };

@@ -3,4 +3,5 @@ module.exports = {
   ContactRouter: require('./contact.routes'),
   ArticleRouter: require('./article.routes'),
   EventRouter: require('./event.routes'),
+  CareerRouter: require('./career.routes'),
 };

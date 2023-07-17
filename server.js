@@ -22,13 +22,20 @@ const storage = new CloudinaryStorage({
     const folder = process.env.CLOUDINARY_FOLDER;
     const subfolder = req.path.split('/')[1];
     params.folder = `${folder}/${subfolder}`;
-    params.format = 'png';
-    params.transformation = [
-      {
-        quality: 'auto',
-        fetch_format: 'auto',
-      },
-    ];
+    if (req.path === '/careers') {
+      // keep options for uploading pdf file and fecthing it in optimized way
+      params.resource_type = 'raw';
+      params.format = 'pdf';
+      params.type = 'private';
+    } else {
+      params.format = 'png';
+      params.transformation = [
+        {
+          quality: 'auto',
+          fetch_format: 'auto',
+        },
+      ];
+    }
 
     return params;
   },
@@ -43,6 +50,7 @@ app.use(upload.fields([
   { name: 'image', maxCount: 1 },
   { name: 'images', maxCount: 10 },
   { name: 'banner', maxCount: 1 },
+  { name: 'resume', maxCount: 1 },
 ]));
 
 app.get('/', (req, res) => {
@@ -53,6 +61,7 @@ app.use('/team-members', require('./routes').TeamMemberRouter);
 app.use('/contacts', require('./routes').ContactRouter);
 app.use('/articles', require('./routes').ArticleRouter);
 app.use('/events', require('./routes').EventRouter);
+app.use('/careers', require('./routes').CareerRouter);
 
 app.use(notFound);
 app.use(errorHandler);
