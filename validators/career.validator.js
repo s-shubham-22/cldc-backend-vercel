@@ -7,14 +7,7 @@ exports.validateCreateCareer = [
     .exists()
     .withMessage('Student ID is required')
     .isLength({ min: 5 })
-    .withMessage('Student ID must be at least 5 characters long')
-    .custom(async (value) => {
-      const career = await Career.findOne({ where: { student_id: value } });
-      if (career) {
-        throw new Error('Career already exists');
-      }
-      return true;
-    }),
+    .withMessage('Student ID must be at least 5 characters long'),
   body('name')
     .exists()
     .withMessage('Name is required')
@@ -52,21 +45,16 @@ exports.validateCreateCareer = [
     .exists()
     .withMessage('Github is required')
     .isURL()
-    .withMessage('Github is invalid')
+    .withMessage('Please enter your GitHub Profile URL')
     .matches(/^(https:\/\/github.com\/)([a-zA-Z0-9_-]+)(\/)?$/)
-    .withMessage('Github is invalid'),
+    .withMessage('GitHub URL is invalid'),
   body('linkedin')
     .exists()
     .withMessage('Linkedin is required')
     .isURL()
-    .withMessage('Linkedin is invalid')
+    .withMessage('Please enter your LinkedIn Profile URL')
     .matches(/^(https:\/\/www.linkedin.com\/in\/)([a-zA-Z0-9_-]+)(\/)?$/)
-    .withMessage('Linkedin is invalid'),
-  body('resume')
-    .exists()
-    .withMessage('Resume is required')
-    .isURL()
-    .withMessage('Resume is invalid'),
+    .withMessage('LinkedIn URL is invalid'),
 ];
 
 exports.validateUpdateCareer = [
@@ -119,17 +107,14 @@ exports.validateUpdateCareer = [
     .exists()
     .withMessage('Github is required')
     .isURL()
-    .withMessage('Github is invalid')
+    .withMessage('Please enter your GitHub Profile URL')
     .matches(/^(https:\/\/github.com\/)([a-zA-Z0-9_-]+)(\/)?$/)
-    .withMessage('Github is invalid'),
+    .withMessage('GitHub URL is invalid'),
   body('linkedin')
     .exists()
     .withMessage('Linkedin is required')
     .isURL()
-    .withMessage('Linkedin is invalid')
+    .withMessage('Please enter your LinkedIn Profile URL')
     .matches(/^(https:\/\/www.linkedin.com\/in\/)([a-zA-Z0-9_-]+)(\/)?$/)
-    .withMessage('Linkedin is invalid'),
-  body('resume')
-    .isURL()
-    .withMessage('Resume is invalid'),
+    .withMessage('LinkedIn URL is invalid'),
 ];

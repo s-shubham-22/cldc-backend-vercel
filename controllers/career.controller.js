@@ -2,6 +2,7 @@ const cloudinary = require('cloudinary').v2;
 const asyncHandler = require('express-async-handler');
 const { cloudinaryConfig } = require('../config/cloudinary.config');
 const { Career } = require('../models');
+const { Op } = require('sequelize');
 
 cloudinary.config(cloudinaryConfig);
 
@@ -13,12 +14,46 @@ const path = `${folder}/${subfolder}`;
 exports.createCareer = asyncHandler(async (req, res) => {
   try {
     const resume = req.files.resume[0].path;
+    const career = await Career.findOne({
+      where: {
+        [Op.or]: [
+          { student_id: req.body.student_id },
+          { linkedin: req.body.linkedin },
+          { github: req.body.github },
+          { email: req.body.email },
+          { contact: req.body.contact }
+        ],
+      },
+    });
+
+    if (career) {
+      await cloudinary.uploader.destroy(
+        `${path}/${resume.split('/').pop().split('.')[0]}`,
+        (error, result) => {
+          if (error) {
+            console.log('❌ Error deleting resume:', error);
+          }
+        }
+      );
+      res.status(400);
+      throw new Error('Career already exists');
+    }
+
     const newCareer = await Career.create({
       ...req.body,
       resume,
     });
     res.status(201).json(newCareer);
   } catch (error) {
+    const resume = req.files.resume[0].path;
+    await cloudinary.uploader.destroy(
+      `${path}/${resume.split('/').pop().split('.')[0]}`,
+      (error, result) => {
+        if (error) {
+          console.log('❌ Error deleting resume:', error);
+        }
+      }
+    );
     res.status(500);
     throw new Error(error);
   }

@@ -14,7 +14,6 @@ const Career = sequelize.define('career', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   institute: {
     type: DataTypes.STRING,
@@ -25,7 +24,7 @@ const Career = sequelize.define('career', {
     allowNull: false,
   },
   semester: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   email: {
