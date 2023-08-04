@@ -1,8 +1,8 @@
 const cloudinary = require('cloudinary').v2;
+const { Op } = require('sequelize');
 const asyncHandler = require('express-async-handler');
 const { cloudinaryConfig } = require('../config/cloudinary.config');
 const { Career } = require('../models');
-const { Op } = require('sequelize');
 
 cloudinary.config(cloudinaryConfig);
 
@@ -33,6 +33,7 @@ exports.createCareer = asyncHandler(async (req, res) => {
           if (error) {
             console.log('❌ Error deleting resume:', error);
           }
+          console.log('✅ Result:', result);
         },
       );
       res.status(400);
@@ -52,6 +53,7 @@ exports.createCareer = asyncHandler(async (req, res) => {
         if (error) {
           console.log('❌ Error deleting resume:', error);
         }
+        console.log('✅ Result:', result);
       },
     );
     res.status(500);

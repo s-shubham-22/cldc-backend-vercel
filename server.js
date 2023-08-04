@@ -5,7 +5,7 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const { connectDB, sequelize } = require('./db');
-const seed = require('./seeders/seed');
+// const seed = require('./seeders/seed');
 
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
 const cloudinaryConfig = require('./config/cloudinary.config');
