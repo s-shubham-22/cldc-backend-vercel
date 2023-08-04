@@ -21,7 +21,7 @@ exports.createCareer = asyncHandler(async (req, res) => {
           { linkedin: req.body.linkedin },
           { github: req.body.github },
           { email: req.body.email },
-          { contact: req.body.contact }
+          { contact: req.body.contact },
         ],
       },
     });
@@ -33,7 +33,7 @@ exports.createCareer = asyncHandler(async (req, res) => {
           if (error) {
             console.log('❌ Error deleting resume:', error);
           }
-        }
+        },
       );
       res.status(400);
       throw new Error('Career already exists');
@@ -52,7 +52,7 @@ exports.createCareer = asyncHandler(async (req, res) => {
         if (error) {
           console.log('❌ Error deleting resume:', error);
         }
-      }
+      },
     );
     res.status(500);
     throw new Error(error);
@@ -105,7 +105,7 @@ exports.updateCareer = asyncHandler(async (req, res) => {
           where: {
             id: req.params.id,
           },
-        }
+        },
       );
 
       res.status(201).json({ message: 'Career updated successfully' });
@@ -119,7 +119,7 @@ exports.updateCareer = asyncHandler(async (req, res) => {
           }
 
           console.log('✅ Resume deleted successfully:', result);
-        }
+        },
       );
     }
 
@@ -132,7 +132,7 @@ exports.updateCareer = asyncHandler(async (req, res) => {
         where: {
           id: req.params.id,
         },
-      }
+      },
     );
 
     res.status(201).json(updatedCareer);
@@ -163,7 +163,7 @@ exports.deleteCareer = asyncHandler(async (req, res) => {
           }
 
           console.log('✅ Resume deleted successfully:', result);
-        }
+        },
       );
     }
 

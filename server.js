@@ -23,10 +23,12 @@ const storage = new CloudinaryStorage({
     const subfolder = req.path.split('/')[1];
     params.folder = `${folder}/${subfolder}`;
     if (req.path === '/careers') {
-      // keep options for uploading pdf file and fecthing it in optimized way
+      // keep options for uploading pdf file and fetching it in optimized way
       params.resource_type = 'raw';
       params.format = 'pdf';
       params.type = 'private';
+      // keep upload file name = firstName_lastName_resume
+      params.public_id = `${req.body.name.replace(' ', '_')}_resume`;
     } else {
       params.format = 'png';
       params.transformation = [
