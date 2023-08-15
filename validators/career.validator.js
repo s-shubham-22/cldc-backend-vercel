@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const asyncHandler = require('express-async-handler');
 
 const { Career } = require('../models');
 
@@ -22,17 +23,21 @@ exports.validateCreateCareer = [
   body('semester')
     .exists()
     .withMessage('Semester is required')
-    .custom(async (value) => {
+    .custom(asyncHandler(async (value) => {
       if (value > 8 || value < 1) {
         throw new Error('Semester must be between 1 and 8');
       }
       return true;
-    }),
+    })),
   body('email')
     .exists()
     .withMessage('Email is required')
-    .isEmail()
-    .withMessage('Email is invalid'),
+    .custom(asyncHandler(async (value) => {
+      if (!value.match(/^[A-Za-z0-9._%+-]+@charusat\.edu\.in$/)) {
+        throw new Error('Email is invalid');
+      }
+      return true;
+    })),
   body('contact')
     .exists()
     .withMessage('Contact is required')
@@ -63,13 +68,13 @@ exports.validateUpdateCareer = [
     .withMessage('Student ID is required')
     .isLength({ min: 5 })
     .withMessage('Student ID must be at least 5 characters long')
-    .custom(async (value) => {
+    .custom(asyncHandler(async (value) => {
       const career = await Career.findOne({ where: { student_id: value } });
       if (career) {
         throw new Error('Career already exists');
       }
       return true;
-    }),
+    })),
   body('name')
     .exists()
     .withMessage('Name is required')
@@ -84,12 +89,12 @@ exports.validateUpdateCareer = [
   body('semester')
     .exists()
     .withMessage('Semester is required')
-    .custom(async (value) => {
+    .custom(asyncHandler(async (value) => {
       if (value > 8 || value < 1) {
         throw new Error('Semester must be between 1 and 8');
       }
       return true;
-    }),
+    })),
   body('email')
     .exists()
     .withMessage('Email is required')
